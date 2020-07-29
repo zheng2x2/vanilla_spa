@@ -13,13 +13,13 @@ function Router(routes) {
 }
 
 Router.prototype = {
-    routes: undefined,
-    rootElem: undefined,
-    constructor: function (routes) {
+    routes: undefined, //an array containing the routes of our app.
+    rootElem: undefined, //the root element of our application. The place where other HTML gets rendered.
+    constructor: function (routes) { //executed only one time in the creation of Router.
         this.routes = routes;
         this.rootElem = document.getElementById('app');
     },
-    init: function(){
+    init: function(){ //This function creates a listener to the hashchange event of window.
         const r = this.routes;
         ( function (scope, r) {
             window.addEventListener('hashchange', function (e) {
@@ -38,7 +38,7 @@ Router.prototype = {
             }
         }
     },
-    goToRoute: function (htmlName) {
+    goToRoute: function (htmlName) { //getting and loading the correct HTML for the active route.
         ( function(scope) {
             const url = 'views/'+htmlName, xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
